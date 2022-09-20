@@ -1,4 +1,4 @@
-// Project Title
+// Interactive Scene
 // Nuha Maisara
 // 19/9/22
 //
@@ -12,8 +12,14 @@
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
+  image(img, 0, 0);
 }
 
 function draw() {
   background(220);
+}
+
+let img;
+function preload() {
+  img = loadImage("assets/Background.jpg");
 }
