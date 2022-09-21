@@ -22,5 +22,5 @@ function setup() {
 // }
 
 function preload() {
-  img = loadImage("Background.jpg");
+  img = loadImage("Background.png");
 }
