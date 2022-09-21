@@ -11,15 +11,16 @@
 // scene interact with the keyboard
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  // createCanvas(windowWidth, windowHeight);
   image(img, 0, 0);
+  preload()
 }
 
-function draw() {
-  background(220);
-}
+// function draw() {
+//   background(220);
+// }
 
 let img;
 function preload() {
-  img = loadImage("assets/Background.jpg");
+  img = loadImage("Background.jpg");
 }
