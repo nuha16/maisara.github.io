@@ -1,15 +1,32 @@
-// Project Title
-// Your Name
-// Date
+// Image
+// Nuha Maisara
+// 22/9/22
 //
 // Extra for Experts:
 // - describe what you did to take this project "above and beyond"
 
+let fishImage;
+let scalar = 0.5;
+
+function preload(){
+  fishImage = loadImage("fish.jpg");
+}
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
+  imageMode(CENTER);
 }
 
 function draw() {
-  background(220);
+  background(255);
+  image(fishImage, mouseX , mouseY, fishImage.width * scalar, fishImage.height * scalar);
+}
+
+function keyPressed(){
+  if (keyCode === UP_ARROW){
+    scalar = scalar * 2;
+  }
+  if (keyCode === DOWN_ARROW){
+    scalar = scalar * 0.5;
+  }
 }
