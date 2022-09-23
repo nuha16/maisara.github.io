@@ -2,18 +2,40 @@
 // Nuha Maisara
 // 22/9/22
 
-let Backgroundimg;
+// ASK!!!
+// let Backgroundimg;
+
+// function preload(){
+//   Backgroundimg = loadImage("Images/Background.jpg");
+// }
+
+// function setup() {
+//   createCanvas(windowWidth, windowHeight);
+//   imageMode(CENTER);
+// }
+
+// function draw() {
+//   background(255);
+//   image(Backgroundimg, windowWidth , windowHeight, windowWidth, windowHeight);
+// }
+
+
+let catImg;
 
 function preload(){
-  Backgroundimg = loadImage("Images/Background.jpg");
+  catImg = loadImage("Images/cat 1.png");
 }
 
-function setup() {
+function setup(){
   createCanvas(windowWidth, windowHeight);
   imageMode(CENTER);
 }
 
-function draw() {
-  background(255);
-  image(Backgroundimg, windowWidth , windowHeight, windowWidth, windowHeight);
+function draw(){
+  image (catImg, mouseX, mouseY, 120, 100);
+}
+
+if (mouseIsPressed === true){
+  
+}
 }
