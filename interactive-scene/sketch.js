@@ -10,11 +10,11 @@
 // scene interacts with the mouse(shapes follow mouse, change their size according to mouse, change their color according to mouse, etc)
 // scene interact with the keyboard
 
-let backgroundImg;
-let scalar = 0.5;
+let BackgroundImg;
+// let scalar = 0.5;
 
 function preload(){
-  backgroundImg = loadImage("fish.jpg");
+  BackgroundImg = loadImage("Background.jpg");
 }
 
 function setup() {
@@ -22,7 +22,7 @@ function setup() {
   imageMode(CENTER);
 }
 
-function draw() {
-  background(255);
-  image(fishImage, mouseX , mouseY, fishImage.width * scalar, fishImage.height * scalar);
-}
+// function draw() {
+//   background(255);
+//   image(BackgroundImg, mouseX , mouseY, BackgroundImg.width * scalar, BackgroundImg.height * scalar);
+// }
