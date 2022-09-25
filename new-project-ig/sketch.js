@@ -30,12 +30,9 @@ function setup(){
   createCanvas(windowWidth, windowHeight);
   imageMode(CENTER);
 }
-
+function mousePressed(){
+  draw();
+}
 function draw(){
   image (catImg, mouseX, mouseY, 120, 100);
-}
-
-if (mouseIsPressed === true){
-  
-}
 }
