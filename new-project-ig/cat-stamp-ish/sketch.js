@@ -6,10 +6,19 @@
 // - describe what you did to take this project "above and beyond"
 
 
-function setup() {
-  createCanvas(windowWidth, windowHeight);
+let catImg;
+
+function preload(){
+  catImg = loadImage("Images/cat 1.png");
 }
 
-function draw() {
-  background(220);
+function setup(){
+  createCanvas(windowWidth, windowHeight);
+  imageMode(CENTER);
+}
+function mousePressed(){
+  draw();
+}
+function draw(){
+  image (catImg, mouseX, mouseY, 120, 100);
 }
