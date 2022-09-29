@@ -4,7 +4,7 @@
 
 // ASK!!!
 let Backgroundimg, catImg1, catImg2, someTime;
-let isCat = true;
+let isCat1 = true;
 
 function preload(){
   Backgroundimg = loadImage("Images/Background.jpg");
@@ -14,6 +14,7 @@ function preload(){
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
+  someTime = 2000;
 }
 
 function draw() {
@@ -22,24 +23,19 @@ function draw() {
 }
 
 function drawCat(){
-  image(catImg1, windowWidth/2.8, windowHeight/2);
+  if (millis() > someTime) {
+    isCat1 = !isCat1;
+    someTime = millis() + 2000;
+  }
+    
+  if (isCat1) {
+    image(catImg1, windowWidth/2.8, windowHeight/2);
+  }
+  else {
+    image(catImg2, windowWidth/2.8, windowHeight/2);
+  }
 }
 
-// function setup() {
-//   createCanvas(400, 400);
-//   someTime = 2000;
-// }
 
 // function draw() {
-//   if (millis() > someTime) {
-//     isCat = !isCat;
-//     someTime = millis() + 2000;
-//   }
-  
-//   if (isCat) {
-//     background("red");
-//   }
-//   else {
-//     background("black");
-//   }
 // }
