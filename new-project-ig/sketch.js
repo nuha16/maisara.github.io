@@ -36,6 +36,3 @@ function drawCat(){
   }
 }
 
-
-// function draw() {
-// }
