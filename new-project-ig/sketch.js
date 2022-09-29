@@ -14,7 +14,7 @@ function preload(){
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  someTime = 2000;
+  someTime = 800;
 }
 
 function draw() {
@@ -25,7 +25,7 @@ function draw() {
 function drawCat(){
   if (millis() > someTime) {
     isCat1 = !isCat1;
-    someTime = millis() + 2000;
+    someTime = millis() + 800;
   }
     
   if (isCat1) {
