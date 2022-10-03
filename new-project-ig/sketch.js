@@ -19,20 +19,20 @@ function setup() {
 
 function draw() {
   image(Backgroundimg, 0 , 0, windowWidth, windowHeight);
-  drawCat();
+  // drawCat();
 }
 
-function drawCat(){
-  if (millis() > someTime) {
-    isCat1 = !isCat1;
-    someTime = millis() + 800;
-  }
+// function drawCat(){
+//   if (millis() > someTime) {
+//     isCat1 = !isCat1;
+//     someTime = millis() + 800;
+//   }
     
-  if (isCat1) {
-    image(catImg1, windowWidth/2.8, windowHeight/2);
-  }
-  else {
-    image(catImg2, windowWidth/2.8, windowHeight/2);
-  }
-}
+//   if (isCat1) {
+//     image(catImg1, windowWidth/2.8, windowHeight/2);
+//   }
+//   else {
+//     image(catImg2, windowWidth/2.8, windowHeight/2);
+//   }
+// }
 
