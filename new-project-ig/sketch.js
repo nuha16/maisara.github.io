@@ -5,7 +5,6 @@
 let Backgroundimg, catImg1, catImg2, someTime;
 let isCat1 = true;
 let state = "start screen";
-let state2 = "infinite cat drawing tool";
 
 function preload(){
   Backgroundimg = loadImage("Images/Background.jpg");
@@ -19,7 +18,7 @@ function setup() {
 }
 
 function start_Screen(){
-  if (state === true){
+  if (state === "start screen"){
     draw1();
     drawCat();
   }
