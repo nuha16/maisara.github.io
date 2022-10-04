@@ -2,7 +2,7 @@
 // Nuha Maisara
 // 22/9/22
 
-let Backgroundimg, catImg1, catImg2, startImg1, startImg2, x, y, someTime;
+let Backgroundimg, catImg1, catImg2, startImg1, startImg2, someTime;
 let isCat1 = true;
 let state = "start screen";
 
@@ -17,8 +17,7 @@ function preload(){
 function setup() {
   createCanvas(windowWidth, windowHeight);
   someTime = 800;
-  x = 100;
-  y = 200;
+
 }
 
 function draw() {
@@ -26,7 +25,7 @@ function draw() {
 
   if (state === "start screen"){
     drawCat();
-    image(startImg1, x, y, windowWidth/2, windowHeight/2);
+    image(startImg1, windowWidth/2.7, windowHeight/5, windowWidth/4, windowHeight/6);
   }
 }
 
@@ -38,10 +37,10 @@ function drawCat(){
   }
     
   if (isCat1) {
-    image(catImg1, windowWidth/2.8, windowHeight/2);
+    image(catImg1, windowWidth/2.7, windowHeight/2);
   }
   else {
-    image(catImg2, windowWidth/2.8, windowHeight/2);
+    image(catImg2, windowWidth/2.7, windowHeight/2);
   }
 }
 
