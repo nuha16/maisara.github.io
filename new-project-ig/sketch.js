@@ -17,15 +17,11 @@ function setup() {
   someTime = 800;
 }
 
-function start_Screen(){
-  draw1();
-  drawCat();
-}
-
-
-function draw1() {
+function draw() {
   image(Backgroundimg, 0 , 0, windowWidth, windowHeight);
-  drawCat();
+  if (state === "start screen"){
+    drawCat();
+  }
 }
 
 function drawCat(){
