@@ -4,6 +4,8 @@
 
 let Backgroundimg, catImg1, catImg2, someTime;
 let isCat1 = true;
+let state = "start screen";
+let state2 = "infinite cat drawing tool";
 
 function preload(){
   Backgroundimg = loadImage("Images/Background.jpg");
@@ -15,6 +17,14 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   someTime = 800;
 }
+
+function start_Screen(){
+  if (state === true){
+    draw();
+    drawCat();
+  }
+}
+
 
 function draw() {
   image(Backgroundimg, 0 , 0, windowWidth, windowHeight);
