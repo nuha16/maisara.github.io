@@ -20,13 +20,13 @@ function setup() {
 
 function start_Screen(){
   if (state === true){
-    draw();
+    draw1();
     drawCat();
   }
 }
 
 
-function draw() {
+function draw1() {
   image(Backgroundimg, 0 , 0, windowWidth, windowHeight);
   drawCat();
 }
