@@ -18,10 +18,8 @@ function setup() {
 }
 
 function start_Screen(){
-  if (state === "start screen"){
-    draw1();
-    drawCat();
-  }
+  draw1();
+  drawCat();
 }
 
 
