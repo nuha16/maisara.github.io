@@ -38,8 +38,8 @@ function startScreen(){
 
 }
 
-function mouseInsideStart1(left, right, top, bottom){
-  return mouseX >= left && mouseX <= right && mouseY >= top && mouseY <= bottom;
+function mouseInsideStart1(){
+  return true;
 }
 
 // the blinking cat on the start screen
