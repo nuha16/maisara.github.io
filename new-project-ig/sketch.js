@@ -29,25 +29,9 @@ function draw() {
     drawCat();
     startScreen();
   }
-}
-
-
-// how to make the first picture not draw TvT
-
-// start button
-function startScreen(){
-  image(startImg1, imgx, imgy, imgWidth, imgHeight);
-  if (mouseInsideStart1(imgx, imgy, imgWidth, imgHeight)){
-    image(startImg2, imgx, imgy, imgWidth, imgHeight);
+  if (state === "main"){
+    cat_stamp();
   }
-  else{
-    image(startImg1, imgx, imgy, imgWidth, imgHeight);
-  }
-
-}
-
-function mouseInsideStart1(x, y, sizeWidth, sizeHeight){
-  return mouseX >= x && mouseX <= x + sizeWidth && mouseY >= y && mouseY <= y + sizeHeight;
 }
 
 // the blinking cat on the start screen
@@ -65,3 +49,31 @@ function drawCat(){
   }
 }
 
+// how to make the first picture not draw TvT
+
+// start button
+function startScreen(){
+  image(startImg1, imgx, imgy, imgWidth, imgHeight);
+  if (mouseInsideStart1(imgx, imgy, imgWidth, imgHeight)){
+    image(startImg2, imgx, imgy, imgWidth, imgHeight);
+  }
+  else{
+    image(startImg1, imgx, imgy, imgWidth, imgHeight);
+  }
+
+}
+
+function mouseInsideStart1(imgx, imgy, imgWidth, imgHeight){
+  return mouseX >= imgx && mouseX <= imgx + imgWidth && mouseY >= imgy && mouseY <= imgy + imgHeight;
+}
+
+
+function cat_stamp(){
+  image (catImg1, mouseX, mouseY, 120, 100);
+}
+
+function mousePressed(){
+  if (state === "start screen" && mouseInsideStart1(imgx, imgy, imgWidth, imgHeight)){
+    state = "main";
+  }
+}
