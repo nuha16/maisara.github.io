@@ -6,6 +6,7 @@ let Backgroundimg, catImg1, catImg2, startImg1, startImg2, someTime, imgWidth, i
 let isCat1 = true;
 let state = "start screen";
 
+// preloading images
 function preload(){
   Backgroundimg = loadImage("Images/Background.jpg");
   catImg1 = loadImage("Images/cat 1.png");
@@ -60,6 +61,7 @@ function startScreen(){
   
 }
 
+// hovering over start button
 function mouseInsideStart1(imgx, imgy, imgWidth, imgHeight){
   return mouseX >= imgx && mouseX <= imgx + imgWidth && mouseY >= imgy && mouseY <= imgy + imgHeight;
 }
@@ -75,6 +77,5 @@ function cat_stamp(){
 function mousePressed(){
   if (state === "start screen" && mouseInsideStart1(imgx, imgy, imgWidth, imgHeight)){
     state = "main";
-    
   }
 }
