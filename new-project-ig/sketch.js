@@ -2,7 +2,7 @@
 // Nuha Maisara
 // 22/9/22
 
-let Backgroundimg, catImg1, catImg2, startImg1, startImg2, someTime, imgWidth, imgHeight, imgx, imgy;
+let Backgroundimg, catImg1, catImg2, greenCat, purpleCat, startImg1, startImg2, someTime, imgWidth, imgHeight, imgx, imgy;
 let isCat1 = true;
 let state = "start screen";
 
@@ -11,6 +11,8 @@ function preload(){
   Backgroundimg = loadImage("Images/Background.jpg");
   catImg1 = loadImage("Images/cat 1.png");
   catImg2 = loadImage("Images/cat 2.png");
+  greenCat = loadImage("Images/green cat.png");
+  purpleCat = loadImage("Images/purple cat.png");
   startImg1 = loadImage("Images/start 1.png");
   startImg2 = loadImage("Images/start 2.png");
 }
@@ -29,6 +31,9 @@ function draw() {
   if (state === "start screen"){
     drawCat();
     startScreen();
+  }
+  if (state === "select"){
+    select_cat();
   }
   if (state === "main"){
     cat_stamp();
@@ -66,7 +71,13 @@ function mouseInsideStart1(imgx, imgy, imgWidth, imgHeight){
   return mouseX >= imgx && mouseX <= imgx + imgWidth && mouseY >= imgy && mouseY <= imgy + imgHeight;
 }
 
-function select_cat(){}
+function mouseInsideCat(){}
+
+function select_cat(){
+  image(catImg1, windowWidth/2.7, windowHeight/4);
+  image(greenCat, windowWidth/1.5, windowHeight/4);
+  image(purpleCat, windowWidth/5, windowHeight/4);
+}
 
 function cat_stamp(){
   imageMode(CENTER);
@@ -76,6 +87,6 @@ function cat_stamp(){
 
 function mousePressed(){
   if (state === "start screen" && mouseInsideStart1(imgx, imgy, imgWidth, imgHeight)){
-    state = "main";
+    state = "select";
   }
 }
