@@ -21,9 +21,6 @@ function setup() {
   imgy = windowHeight/5;
   imgWidth = windowWidth/5;
   imgHeight = windowHeight/6;
-  // if (state === "main"){
-  //   imageMode(CENTER);
-  // }
 }
 
 function draw() {
@@ -43,7 +40,7 @@ function drawCat(){
     isCat1 = !isCat1;
     someTime = millis() + 800;
   }
-    
+  
   if (isCat1) {
     image(catImg1, windowWidth/2.7, windowHeight/2);
   }
@@ -52,18 +49,15 @@ function drawCat(){
   }
 }
 
-// how to make the first picture not draw TvT
-
 // start button
 function startScreen(){
-  image(startImg1, imgx, imgy, imgWidth, imgHeight);
   if (mouseInsideStart1(imgx, imgy, imgWidth, imgHeight)){
     image(startImg2, imgx, imgy, imgWidth, imgHeight);
   }
   else{
     image(startImg1, imgx, imgy, imgWidth, imgHeight);
   }
-
+  
 }
 
 function mouseInsideStart1(imgx, imgy, imgWidth, imgHeight){
@@ -73,11 +67,14 @@ function mouseInsideStart1(imgx, imgy, imgWidth, imgHeight){
 function select_cat(){}
 
 function cat_stamp(){
+  imageMode(CENTER);
   image (catImg1, mouseX, mouseY, 120, 100);
+  imageMode(CORNER);
 }
 
 function mousePressed(){
   if (state === "start screen" && mouseInsideStart1(imgx, imgy, imgWidth, imgHeight)){
     state = "main";
+    
   }
 }
