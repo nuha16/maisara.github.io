@@ -70,6 +70,7 @@ function mouseInsideStart1(imgx, imgy, imgWidth, imgHeight){
   return mouseX >= imgx && mouseX <= imgx + imgWidth && mouseY >= imgy && mouseY <= imgy + imgHeight;
 }
 
+function select_cat(){}
 
 function cat_stamp(){
   image (catImg1, mouseX, mouseY, 120, 100);
