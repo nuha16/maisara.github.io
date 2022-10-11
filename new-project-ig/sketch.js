@@ -21,29 +21,33 @@ function setup() {
   imgy = windowHeight/5;
   imgWidth = windowWidth/5;
   imgHeight = windowHeight/6;
-
 }
 
 function draw() {
   image(Backgroundimg, 0 , 0, windowWidth, windowHeight);
-
   if (state === "start screen"){
     drawCat();
     startScreen();
   }
 }
 
+
+// how to make the first picture not draw TvT
+
 // start button
 function startScreen(){
   image(startImg1, imgx, imgy, imgWidth, imgHeight);
-  if (mouseInsideStart1(startImg1, imgx, imgy, imgWidth, imgHeight)){
+  if (mouseInsideStart1(imgx, imgy, imgWidth, imgHeight)){
     image(startImg2, imgx, imgy, imgWidth, imgHeight);
+  }
+  else{
+    image(startImg1, imgx, imgy, imgWidth, imgHeight);
   }
 
 }
 
-function mouseInsideStart1(){
-  return true;
+function mouseInsideStart1(x, y, sizeWidth, sizeHeight){
+  return mouseX >= x && mouseX <= x + sizeWidth && mouseY >= y && mouseY <= y + sizeHeight;
 }
 
 // the blinking cat on the start screen
