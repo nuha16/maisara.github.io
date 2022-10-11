@@ -2,7 +2,7 @@
 // Nuha Maisara
 // 22/9/22
 
-let Backgroundimg, catImg1, catImg2, startImg1, startImg2, someTime, imgs, imgWidth, imgHeight, imgx, imgy;
+let Backgroundimg, catImg1, catImg2, startImg1, startImg2, someTime, imgWidth, imgHeight, imgx, imgy;
 let isCat1 = true;
 let state = "start screen";
 
@@ -21,6 +21,9 @@ function setup() {
   imgy = windowHeight/5;
   imgWidth = windowWidth/5;
   imgHeight = windowHeight/6;
+  // if (state === "main"){
+  //   imageMode(CENTER);
+  // }
 }
 
 function draw() {
