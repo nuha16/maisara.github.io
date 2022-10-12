@@ -96,6 +96,7 @@ function cat_stamp(){
 }
 
 function mousePressed(){
+  console.log(mouseX, mouseY);
   if (state === "start screen" && mouseInsideStart1(imgx, imgy, imgWidth, imgHeight)){
     state = "select";
   }

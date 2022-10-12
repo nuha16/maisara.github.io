@@ -12,9 +12,9 @@ function setup() {
 
 function draw() {
   background(220);
-  circle(700, 100, 50);
+  circle(1051, 136, 50);
 }
 
-function mousePressed(){
+function mousePressed() {
   console.log(mouseX, mouseY);
 }
