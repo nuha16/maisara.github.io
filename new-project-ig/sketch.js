@@ -2,7 +2,7 @@
 // Nuha Maisara
 // 22/9/22
 
-let Backgroundimg, catImg1, catImg2, greenCat, purpleCat, startImg1, startImg2, someTime, imgWidth, imgHeight, imgx, imgy;
+let Backgroundimg, catImg1, catImg2, greenCat, purpleCat, startImg1, startImg2, someTime, imgWidth, imgHeight, imgx, imgy, selectCatimg;
 let isCat1 = true;
 let state = "start screen";
 
@@ -15,6 +15,7 @@ function preload(){
   purpleCat = loadImage("Images/purple cat.png");
   startImg1 = loadImage("Images/start 1.png");
   startImg2 = loadImage("Images/start 2.png");
+  selectCatimg = loadImage("Images/select cat.png");
 }
 
 function setup() {
@@ -71,12 +72,21 @@ function mouseInsideStart1(imgx, imgy, imgWidth, imgHeight){
   return mouseX >= imgx && mouseX <= imgx + imgWidth && mouseY >= imgy && mouseY <= imgy + imgHeight;
 }
 
-function mouseInsideCat(){}
+function mouseInsideCat(x, y, width, height){
+  return mouseX >= x && mouseX <= x + width && mouseY >= y && mouseY <= y + height;
+}
+
+function mouseInsideGreenCat(x, y, width, height){}
+
+function mouseInsidePurpleCat(x, y, width, height){}
 
 function select_cat(){
-  image(catImg1, windowWidth/2.7, windowHeight/4);
-  image(greenCat, windowWidth/1.5, windowHeight/4);
-  image(purpleCat, windowWidth/5, windowHeight/4);
+  image(catImg1, windowWidth/2.7, windowHeight/3);
+  image(greenCat, windowWidth/1.4, windowHeight/3);
+  image(purpleCat, windowWidth/6.2, windowHeight/3);
+
+  // the words that say select your cat
+  image(selectCatimg, windowWidth/3, windowHeight/6);
 }
 
 function cat_stamp(){
@@ -88,5 +98,8 @@ function cat_stamp(){
 function mousePressed(){
   if (state === "start screen" && mouseInsideStart1(imgx, imgy, imgWidth, imgHeight)){
     state = "select";
+  }
+  if (state === "select" && mouseInsideCat(windowWidth/2.7, windowHeight/3)){
+    state = "main";
   }
 }
