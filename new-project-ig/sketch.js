@@ -72,13 +72,11 @@ function mouseInsideStart1(imgx, imgy, imgWidth, imgHeight){
   return mouseX >= imgx && mouseX <= imgx + imgWidth && mouseY >= imgy && mouseY <= imgy + imgHeight;
 }
 
-function mouseInsideCat(x, y, width, height){
-  return mouseX >= x && mouseX <= x + width && mouseY >= y && mouseY <= y + height;
-}
+function mouseInsideCat(left, right, top, bottom){}
 
-function mouseInsideGreenCat(x, y, width, height){}
+function mouseInsideGreenCat(left, right, top, bottom){}
 
-function mouseInsidePurpleCat(x, y, width, height){}
+function mouseInsidePurpleCat(left, right, top, bottom){}
 
 function select_cat(){
   image(catImg1, windowWidth/2.7, windowHeight/3);
