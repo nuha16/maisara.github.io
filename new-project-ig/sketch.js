@@ -5,9 +5,10 @@
 // extra for experts: I used sound
 
 // variables
-let Backgroundimg, catImg1, catImg2, greenCat, purpleCat, startImg1, startImg2, someTime, imgWidth, imgHeight, imgx, imgy, selectCatimg, chosenCat, themeSong, meow, meow2, pressEnter;
+let Backgroundimg, catImg1, catImg2, greenCat, purpleCat, startImg1, startImg2, someTime, imgWidth, imgHeight, imgx, imgy, selectCatimg, chosenCat, themeSong, meow, meow2, pressEnter, counterSize;
 let isCat1 = true;
 let state = "start screen";
+let counter = 0;
 
 // preloading images and sounds
 function preload(){
@@ -22,6 +23,7 @@ function preload(){
   meow = loadSound("Sounds/meow.ogg");
   meow2 = loadSound("Sounds/kitten meow.wav");
   pressEnter = loadImage("Images/press enter.png");
+  themeSong = loadSound("Sounds/theme song.mp3");
 }
 
 function setup() {
@@ -31,6 +33,7 @@ function setup() {
   imgy = windowHeight/5;
   imgWidth = windowWidth/5;
   imgHeight = windowHeight/6;
+  counterSize = 32;
 }
 
 function draw() {
@@ -44,6 +47,7 @@ function draw() {
   }
   if (state === "main"){
     cat_follow();
+    txtCounter();
   }
 }
 
@@ -73,11 +77,6 @@ function startScreen(){
 
 // domain of button
 function mouseInsideImg(x, y, width, height){
-  return mouseX >= x && mouseX <= x + width && mouseY >= y && mouseY <= y + height;
-}
-
-// domain of cat
-function mouseInsideCat(x, y, width, height){
   return mouseX >= x && mouseX <= x + width && mouseY >= y && mouseY <= y + height;
 }
 
@@ -124,17 +123,17 @@ function mousePressed(){
   }
 
   // state "select" to "main"
-  if (state === "select" && mouseInsideCat(windowWidth/7, windowHeight/2.5, windowWidth/7, windowHeight/4)){
+  if (state === "select" && mouseInsideImg(windowWidth/7, windowHeight/2.5, windowWidth/7, windowHeight/4)){
     chosenCat = purpleCat;
     meow2.play();
     state = "main";
   }
-  else if (state === "select" && mouseInsideCat(windowWidth/1.435, windowHeight/2.5, windowWidth/7, windowHeight/4)){
+  else if (state === "select" && mouseInsideImg(windowWidth/1.435, windowHeight/2.5, windowWidth/7, windowHeight/4)){
     chosenCat = greenCat;
     meow2.play();
     state = "main";
   }
-  else if (state === "select" &&  mouseInsideCat(windowWidth/2.43, windowHeight/2.62, windowWidth/7, windowHeight/3)){
+  else if (state === "select" &&  mouseInsideImg(windowWidth/2.43, windowHeight/2.62, windowWidth/7, windowHeight/3)){
     chosenCat = catImg1;
     meow2.play();
     state = "main";
@@ -144,5 +143,13 @@ function mousePressed(){
 function keyPressed() {
   if (state === "main" && keyCode === ENTER) {
     meow.play();
+    counter += 1;
   }
+}
+
+function txtCounter() {
+  textSize(counterSize);
+  fill("white");
+  noStroke();
+  text(counter, windowWidth/1.3, windowHeight/5.5);
 }
