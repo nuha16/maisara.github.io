@@ -5,7 +5,7 @@
 // extra for experts: I used sound
 
 // variables
-let Backgroundimg, catImg1, catImg2, greenCat, purpleCat, startImg1, startImg2, someTime, imgWidth, imgHeight, imgx, imgy, selectCatimg;
+let Backgroundimg, catImg1, catImg2, greenCat, purpleCat, startImg1, startImg2, someTime, imgWidth, imgHeight, imgx, imgy, selectCatimg, chosenCat;
 let isCat1 = true;
 let state = "start screen";
 
@@ -42,7 +42,7 @@ function draw() {
     select_cat();
   }
   if (state === "main"){
-    cat_stamp();
+    cat_follow();
   }
 }
 
@@ -52,7 +52,6 @@ function drawCat(){
     isCat1 = !isCat1;
     someTime = millis() + 800;
   }
-  
   if (isCat1) {
     image(catImg1, windowWidth/2.7, windowHeight/2);
   }
@@ -69,11 +68,15 @@ function startScreen(){
   else{
     image(startImg1, imgx, imgy, imgWidth, imgHeight);
   }
-  
 }
 
 // domain of button
 function mouseInsideImg(x, y, width, height){
+  return mouseX >= x && mouseX <= x + width && mouseY >= y && mouseY <= y + height;
+}
+
+// domain of cat
+function mouseInsideCat(x, y, width, height){
   return mouseX >= x && mouseX <= x + width && mouseY >= y && mouseY <= y + height;
 }
 
@@ -104,26 +107,10 @@ function select_cat(){
   image(selectCatimg, windowWidth/3.3, windowHeight/6);
 }
 
-// the cat stamp
-function cat_stamp(){
-  // white cat
-  if (mouseInsideImg(windowWidth/2.43, windowHeight/2.62, windowWidth/7, windowHeight/3)){
-    imageMode(CENTER);
-    image (catImg1, mouseX, mouseY);
-    imageMode(CORNER);
-  }
-  // green cat
-  if (mouseInsideImg(windowWidth/1.435, windowHeight/2.5, windowWidth/7, windowHeight/4)){
-    imageMode(CENTER);
-    image (greenCat, mouseX, mouseY);
-    imageMode(CORNER);
-  }
-  // purple cat
-  if (mouseInsideImg(windowWidth/7, windowHeight/2.5, windowWidth/7, windowHeight/4)){
-    imageMode(CENTER);
-    image (purpleCat, mouseX, mouseY);
-    imageMode(CORNER);
-  }
+function cat_follow(){
+  imageMode(CENTER);
+  image(chosenCat, mouseX, windowHeight/1.4);
+  imageMode(CORNER);
 }
 
 // pressing the mouse
@@ -135,7 +122,21 @@ function mousePressed(){
   }
 
   // state "select" to "main"
-  if (state === "select" && mouseInsideImg(windowWidth/2.7, windowHeight/3)){
+  if (state === "select" && mouseInsideCat(windowWidth/7, windowHeight/2.5, windowWidth/7, windowHeight/4)){
+    chosenCat = purpleCat;
     state = "main";
   }
+  else if (state === "select" && mouseInsideCat(windowWidth/1.435, windowHeight/2.5, windowWidth/7, windowHeight/4)){
+    chosenCat = greenCat;
+    state = "main";
+  }
+  else if (state === "select" &&  mouseInsideCat(windowWidth/2.43, windowHeight/2.62, windowWidth/7, windowHeight/3)){
+    chosenCat = catImg1;
+    state = "main";
+  }
+
+  if (state === "main"){
+    image(chosenCat);
+  }
+
 }
