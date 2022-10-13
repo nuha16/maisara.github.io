@@ -67,7 +67,7 @@ function mouseInsideStart1(imgx, imgy, imgWidth, imgHeight){
   return mouseX >= imgx && mouseX <= imgx + imgWidth && mouseY >= imgy && mouseY <= imgy + imgHeight;
 }
 
-
+// cat on pointer how? hehe
 function cat_stamp(){
   image (catImg1, mouseX, mouseY, 120, 100);
 }
