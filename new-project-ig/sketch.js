@@ -72,25 +72,23 @@ function mouseInsideStart1(imgx, imgy, imgWidth, imgHeight){
   return mouseX >= imgx && mouseX <= imgx + imgWidth && mouseY >= imgy && mouseY <= imgy + imgHeight;
 }
 
-<<<<<<< HEAD
-// cat on pointer how? hehe
-=======
-function mouseInsideCat(left, right, top, bottom){}
+function mouseInsideCat(x, y, width, height){
+  return mouseX >= x && mouseX <= x + width && mouseY >= y && mouseY <= y + height;
+}
 
 function mouseInsideGreenCat(left, right, top, bottom){}
 
 function mouseInsidePurpleCat(left, right, top, bottom){}
 
 function select_cat(){
-  image(catImg1, windowWidth/2.7, windowHeight/3);
-  image(greenCat, windowWidth/1.4, windowHeight/3);
-  image(purpleCat, windowWidth/6.2, windowHeight/3);
+  image(catImg1, windowWidth/2.5, windowHeight/2.5, windowWidth/8, windowHeight/3.5);
+  image(greenCat, windowWidth/1.4, windowHeight/2.5);
+  image(purpleCat, windowWidth/6.2, windowHeight/2.5);
 
   // the words that say select your cat
   image(selectCatimg, windowWidth/3, windowHeight/6);
 }
 
->>>>>>> 193889045ea83f3556a04d7f8f852028519580e7
 function cat_stamp(){
   imageMode(CENTER);
   image (catImg1, mouseX, mouseY, 120, 100);
