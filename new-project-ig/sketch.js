@@ -81,34 +81,49 @@ function mouseInsideImg(x, y, width, height){
 function select_cat(){
   // white cat
   noFill();
-  stroke("grey");
-  strokeWeight(3);
-  rect(windowWidth/2.55, windowHeight/2.62, windowWidth/7, windowHeight/3);
-  image(catImg1, windowWidth/2.5, windowHeight/2.5, windowWidth/8, windowHeight/3.5);
+  stroke(171, 170, 182);
+  strokeWeight(4);
+  rect(windowWidth/2.43, windowHeight/2.62, windowWidth/7, windowHeight/3);
+  image(catImg1, windowWidth/2.4, windowHeight/2.5, windowWidth/8, windowHeight/3.5);
 
   // green eye cat
   noFill();
-  stroke("grey");
-  strokeWeight(3);
-  rect(windowWidth/1.4, windowHeight/2.5, windowWidth/7, windowHeight/3);
+  stroke("green");
+  strokeWeight(4);
+  rect(windowWidth/1.435, windowHeight/2.5, windowWidth/7, windowHeight/4);
   image(greenCat, windowWidth/1.4, windowHeight/2.5);
 
   // purple eye cat
   noFill();
-  stroke("grey");
-  strokeWeight(3);
-  rect(windowWidth/6.2, windowHeight/2.5, windowWidth/7, windowHeight/3);
+  stroke(143, 131, 249);
+  strokeWeight(4);
+  rect(windowWidth/7, windowHeight/2.5, windowWidth/7, windowHeight/4);
   image(purpleCat, windowWidth/6.2, windowHeight/2.5);
 
   // the words that say select your cat
-  image(selectCatimg, windowWidth/3, windowHeight/6);
+  image(selectCatimg, windowWidth/3.3, windowHeight/6);
 }
 
 // the cat stamp
 function cat_stamp(){
-  imageMode(CENTER);
-  image (catImg1, mouseX, mouseY, 120, 100);
-  imageMode(CORNER);
+  // white cat
+  if (mouseInsideImg(windowWidth/2.43, windowHeight/2.62, windowWidth/7, windowHeight/3)){
+    imageMode(CENTER);
+    image (catImg1, mouseX, mouseY);
+    imageMode(CORNER);
+  }
+  // green cat
+  if (mouseInsideImg(windowWidth/1.435, windowHeight/2.5, windowWidth/7, windowHeight/4)){
+    imageMode(CENTER);
+    image (greenCat, mouseX, mouseY);
+    imageMode(CORNER);
+  }
+  // purple cat
+  if (mouseInsideImg(windowWidth/7, windowHeight/2.5, windowWidth/7, windowHeight/4)){
+    imageMode(CENTER);
+    image (purpleCat, mouseX, mouseY);
+    imageMode(CORNER);
+  }
 }
 
 // pressing the mouse
