@@ -2,6 +2,9 @@
 // Nuha Maisara
 // 22/9/22
 
+// extra for experts: I used sound
+
+// variables
 let Backgroundimg, catImg1, catImg2, greenCat, purpleCat, startImg1, startImg2, someTime, imgWidth, imgHeight, imgx, imgy, selectCatimg;
 let isCat1 = true;
 let state = "start screen";
@@ -18,6 +21,7 @@ function preload(){
   selectCatimg = loadImage("Images/select cat.png");
 }
 
+// setup and setting variables
 function setup() {
   createCanvas(windowWidth, windowHeight);
   someTime = 800;
@@ -27,6 +31,7 @@ function setup() {
   imgHeight = windowHeight/6;
 }
 
+// using all the functions in one place
 function draw() {
   image(Backgroundimg, 0 , 0, windowWidth, windowHeight);
   if (state === "start screen"){
@@ -67,11 +72,12 @@ function startScreen(){
   
 }
 
-// hovering over start button
+// domain of button
 function mouseInsideImg(x, y, width, height){
   return mouseX >= x && mouseX <= x + width && mouseY >= y && mouseY <= y + height;
 }
 
+// selecting the cat
 function select_cat(){
   // white cat
   noFill();
@@ -98,17 +104,22 @@ function select_cat(){
   image(selectCatimg, windowWidth/3, windowHeight/6);
 }
 
+// the cat stamp
 function cat_stamp(){
   imageMode(CENTER);
   image (catImg1, mouseX, mouseY, 120, 100);
   imageMode(CORNER);
 }
 
+// pressing the mouse
 function mousePressed(){
   console.log(mouseX, mouseY);
+  // state "start screen" to "select"
   if (state === "start screen" && mouseInsideImg(imgx, imgy, imgWidth, imgHeight)){
     state = "select";
   }
+
+  // state "select" to "main"
   if (state === "select" && mouseInsideImg(windowWidth/2.7, windowHeight/3)){
     state = "main";
   }
