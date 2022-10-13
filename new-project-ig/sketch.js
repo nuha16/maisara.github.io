@@ -5,11 +5,11 @@
 // extra for experts: I used sound
 
 // variables
-let Backgroundimg, catImg1, catImg2, greenCat, purpleCat, startImg1, startImg2, someTime, imgWidth, imgHeight, imgx, imgy, selectCatimg, chosenCat;
+let Backgroundimg, catImg1, catImg2, greenCat, purpleCat, startImg1, startImg2, someTime, imgWidth, imgHeight, imgx, imgy, selectCatimg, chosenCat, themeSong, meow, meow2;
 let isCat1 = true;
 let state = "start screen";
 
-// preloading images
+// preloading images and sounds
 function preload(){
   Backgroundimg = loadImage("Images/Background.jpg");
   catImg1 = loadImage("Images/cat 1.png");
@@ -19,6 +19,8 @@ function preload(){
   startImg1 = loadImage("Images/start 1.png");
   startImg2 = loadImage("Images/start 2.png");
   selectCatimg = loadImage("Images/select cat.png");
+  meow = loadSound("Sounds/meow.ogg");
+  meow2 = loadSound("Sounds/kitten meow.wav");
 }
 
 // setup and setting variables
@@ -118,25 +120,30 @@ function mousePressed(){
   console.log(mouseX, mouseY);
   // state "start screen" to "select"
   if (state === "start screen" && mouseInsideImg(imgx, imgy, imgWidth, imgHeight)){
+    meow2.play();
     state = "select";
   }
 
   // state "select" to "main"
   if (state === "select" && mouseInsideCat(windowWidth/7, windowHeight/2.5, windowWidth/7, windowHeight/4)){
     chosenCat = purpleCat;
+    meow2.play();
     state = "main";
   }
   else if (state === "select" && mouseInsideCat(windowWidth/1.435, windowHeight/2.5, windowWidth/7, windowHeight/4)){
     chosenCat = greenCat;
+    meow2.play();
     state = "main";
   }
   else if (state === "select" &&  mouseInsideCat(windowWidth/2.43, windowHeight/2.62, windowWidth/7, windowHeight/3)){
     chosenCat = catImg1;
+    meow2.play();
     state = "main";
   }
+}
 
-  if (state === "main"){
-    image(chosenCat);
+function keyPressed() {
+  if (state === "main" && keyCode === ENTER) {
+    meow.play();
   }
-
 }
