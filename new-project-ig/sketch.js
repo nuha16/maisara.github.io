@@ -1,11 +1,11 @@
-// Image
+// Idle Cat-Follow Game
 // Nuha Maisara
 // 22/9/22
 
 // extra for experts: I used sound
 
 // variables
-let Backgroundimg, catImg1, catImg2, greenCat, purpleCat, startImg1, startImg2, someTime, imgWidth, imgHeight, imgx, imgy, selectCatimg, chosenCat, themeSong, meow, meow2;
+let Backgroundimg, catImg1, catImg2, greenCat, purpleCat, startImg1, startImg2, someTime, imgWidth, imgHeight, imgx, imgy, selectCatimg, chosenCat, themeSong, meow, meow2, pressEnter;
 let isCat1 = true;
 let state = "start screen";
 
@@ -21,9 +21,9 @@ function preload(){
   selectCatimg = loadImage("Images/select cat.png");
   meow = loadSound("Sounds/meow.ogg");
   meow2 = loadSound("Sounds/kitten meow.wav");
+  pressEnter = loadImage("Images/press enter.png");
 }
 
-// setup and setting variables
 function setup() {
   createCanvas(windowWidth, windowHeight);
   someTime = 800;
@@ -33,7 +33,6 @@ function setup() {
   imgHeight = windowHeight/6;
 }
 
-// using all the functions in one place
 function draw() {
   image(Backgroundimg, 0 , 0, windowWidth, windowHeight);
   if (state === "start screen"){
@@ -112,10 +111,10 @@ function select_cat(){
 function cat_follow(){
   imageMode(CENTER);
   image(chosenCat, mouseX, windowHeight/1.4);
+  image(pressEnter, windowWidth/3.3, windowHeight/6);
   imageMode(CORNER);
 }
 
-// pressing the mouse
 function mousePressed(){
   console.log(mouseX, mouseY);
   // state "start screen" to "select"
