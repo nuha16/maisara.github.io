@@ -58,7 +58,7 @@ function drawCat(){
 
 // start button
 function startScreen(){
-  if (mouseInsideStart1(imgx, imgy, imgWidth, imgHeight)){
+  if (mouseInsideImg(imgx, imgy, imgWidth, imgHeight)){
     image(startImg2, imgx, imgy, imgWidth, imgHeight);
   }
   else{
@@ -68,21 +68,30 @@ function startScreen(){
 }
 
 // hovering over start button
-function mouseInsideStart1(imgx, imgy, imgWidth, imgHeight){
-  return mouseX >= imgx && mouseX <= imgx + imgWidth && mouseY >= imgy && mouseY <= imgy + imgHeight;
-}
-
-function mouseInsideCat(x, y, width, height){
+function mouseInsideImg(x, y, width, height){
   return mouseX >= x && mouseX <= x + width && mouseY >= y && mouseY <= y + height;
 }
 
-function mouseInsideGreenCat(left, right, top, bottom){}
-
-function mouseInsidePurpleCat(left, right, top, bottom){}
-
 function select_cat(){
+  // white cat
+  noFill();
+  stroke("grey");
+  strokeWeight(3);
+  rect(windowWidth/2.55, windowHeight/2.62, windowWidth/7, windowHeight/3);
   image(catImg1, windowWidth/2.5, windowHeight/2.5, windowWidth/8, windowHeight/3.5);
+
+  // green eye cat
+  noFill();
+  stroke("grey");
+  strokeWeight(3);
+  rect(windowWidth/1.4, windowHeight/2.5, windowWidth/7, windowHeight/3);
   image(greenCat, windowWidth/1.4, windowHeight/2.5);
+
+  // purple eye cat
+  noFill();
+  stroke("grey");
+  strokeWeight(3);
+  rect(windowWidth/6.2, windowHeight/2.5, windowWidth/7, windowHeight/3);
   image(purpleCat, windowWidth/6.2, windowHeight/2.5);
 
   // the words that say select your cat
@@ -97,10 +106,10 @@ function cat_stamp(){
 
 function mousePressed(){
   console.log(mouseX, mouseY);
-  if (state === "start screen" && mouseInsideStart1(imgx, imgy, imgWidth, imgHeight)){
+  if (state === "start screen" && mouseInsideImg(imgx, imgy, imgWidth, imgHeight)){
     state = "select";
   }
-  if (state === "select" && mouseInsideCat(windowWidth/2.7, windowHeight/3)){
+  if (state === "select" && mouseInsideImg(windowWidth/2.7, windowHeight/3)){
     state = "main";
   }
 }
