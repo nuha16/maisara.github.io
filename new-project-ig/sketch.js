@@ -5,7 +5,7 @@
 // extra for experts: I used sound
 
 // variables
-let Backgroundimg, catImg1, catImg2, greenCat, purpleCat, startImg1, startImg2, someTime, imgWidth, imgHeight, imgx, imgy, selectCatimg, chosenCat, themeSong, meow, meow2, pressEnter, counterSize;
+let Backgroundimg, catImg1, catImg2, greenCat, purpleCat, startImg1, startImg2, someTime, imgWidth, imgHeight, imgx, imgy, selectCatimg, chosenCat, meow, meow2, pressEnter, counterSize;
 let isCat1 = true;
 let state = "start screen";
 let counter = 0;
@@ -23,7 +23,6 @@ function preload(){
   meow = loadSound("Sounds/meow.ogg");
   meow2 = loadSound("Sounds/kitten meow.wav");
   pressEnter = loadImage("Images/press enter.png");
-  themeSong = loadSound("Sounds/theme song.mp3");
 }
 
 function setup() {
