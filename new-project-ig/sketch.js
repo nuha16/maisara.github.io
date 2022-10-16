@@ -38,6 +38,7 @@ function setup() {
 
 function draw() {
   image(Backgroundimg, 0 , 0, windowWidth, windowHeight);
+  themeSong.play();
   if (state === "start screen"){
     drawCat();
     startScreen();
