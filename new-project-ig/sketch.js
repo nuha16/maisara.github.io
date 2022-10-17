@@ -264,6 +264,8 @@ function txtQuestion(){
 
 function gameOver(){
   state === "game over";
+  // sound effect
+  angryMeow.play();
 
   // game over img
   image(game_over, windowWidth/3.4, windowHeight/5);
@@ -275,6 +277,4 @@ function gameOver(){
   rect(windowWidth/2.6, windowHeight/2.5, windowWidth/6.6, windowHeight/12);
   image(restart, windowWidth/2.6, windowHeight/2.5);
 
-  // sound effect
-  angryMeow.play();
 }
