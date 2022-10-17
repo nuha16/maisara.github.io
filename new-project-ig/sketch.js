@@ -5,7 +5,7 @@
 // extra for experts: I used sound
 
 // variables
-let Backgroundimg, catImg1, catImg2, greenCat, purpleCat, startImg1, startImg2, someTime, imgWidth, imgHeight, imgx, imgy, selectCatimg, chosenCat, meow, meow2, pressEnter, counterSize;
+let Backgroundimg, catImg1, catImg2, greenCat, purpleCat, startImg1, startImg2, someTime, imgWidth, imgHeight, imgx, imgy, selectCatimg, chosenCat, meow, meow2, pressEnter, counterSize, angryMeow, happyMeow, feedCat, fish, catFood, trash;
 let isCat1 = true;
 let state = "start screen";
 let counter = 0;
@@ -23,9 +23,15 @@ function preload(){
   meow = loadSound("Sounds/meow.ogg");
   meow2 = loadSound("Sounds/kitten meow.wav");
   pressEnter = loadImage("Images/press enter.png");
+  angryMeow = loadSound("Sounds/angry meow.mp3");
+  happyMeow = loadSound("Sounds/happy meow.wav");
+  feedCat = loadImage("Images/feed cat.png");
+  fish = loadImage("Image/fish.png");
+  catFood = loadImage("Image/cat food.png");
+  trash = loadImage("Images/fish.png");
 }
 
-function setup() {
+function setup(){
   createCanvas(windowWidth, windowHeight);
   someTime = 800;
   imgx = windowWidth/2.7;
@@ -35,9 +41,8 @@ function setup() {
   counterSize = 32;
 }
 
-function draw() {
+function draw(){
   image(Backgroundimg, 0 , 0, windowWidth, windowHeight);
-  themeSong.play();
   if (state === "start screen"){
     drawCat();
     startScreen();
@@ -48,6 +53,7 @@ function draw() {
   if (state === "main"){
     cat_follow();
     txtCounter();
+    select_food();
   }
 }
 
@@ -107,15 +113,23 @@ function select_cat(){
   image(selectCatimg, windowWidth/3.3, windowHeight/6);
 }
 
+function select_food(){
+  noFill();
+  stroke(143, 131, 249);
+  strokeWeight(4);
+  rect(windowWidth/7, windowHeight/2.5, windowWidth/7, windowHeight/4);
+  image(trash, windowWidth/6.2, windowHeight/2.5);
+}
+
+// cat mouse
 function cat_follow(){
   imageMode(CENTER);
-  image(chosenCat, mouseX, windowHeight/1.4);
-  image(pressEnter, windowWidth/3.3, windowHeight/6);
+  image(chosenCat, mouseX, mouseY);
+  image(pressEnter, windowWidth/2, windowHeight/1.2);
   imageMode(CORNER);
 }
 
 function mousePressed(){
-  console.log(mouseX, mouseY);
   // state "start screen" to "select"
   if (state === "start screen" && mouseInsideImg(imgx, imgy, imgWidth, imgHeight)){
     meow2.play();
@@ -138,16 +152,21 @@ function mousePressed(){
     meow2.play();
     state = "main";
   }
+
+  // selecting food
+  else if (state === "main"){
+    select_food();
+  }
 }
 
-function keyPressed() {
+function keyPressed(){
   if (state === "main" && keyCode === ENTER) {
     meow.play();
     counter += 1;
   }
 }
 
-function txtCounter() {
+function txtCounter(){
   textSize(counterSize);
   fill("white");
   noStroke();
