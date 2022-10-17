@@ -5,7 +5,7 @@
 // extra for experts: I used sound
 
 // variables
-let Backgroundimg, catImg1, catImg2, greenCat, purpleCat, startImg1, startImg2, someTime, imgWidth, imgHeight, imgx, imgy, selectCatimg, chosenCat, meow, meow2, pressEnter, counterSize, angryMeow, happyMeow, feedCat, fish, catFood, trash;
+let Backgroundimg, catImg1, catImg2, greenCat, purpleCat, startImg1, startImg2, someTime, imgWidth, imgHeight, imgx, imgy, selectCatimg, chosenCat, meow, meow2, pressEnter, txt_size, angryMeow, happyMeow, feedCat, fish, catFood, trash, question, back;
 let isCat1 = true;
 let state = "start screen";
 let counter = 0;
@@ -29,6 +29,8 @@ function preload(){
   fish = loadImage("Images/fish.png");
   catFood = loadImage("Images/cat food.png");
   trash = loadImage("Images/trash.png");
+  question = loadImage("Images/question.png");
+  back = loadImage("Images/back.png");
 }
 
 function setup(){
@@ -38,7 +40,7 @@ function setup(){
   imgy = windowHeight/5;
   imgWidth = windowWidth/5;
   imgHeight = windowHeight/6;
-  counterSize = 32;
+  txt_size = 32;
 }
 
 function draw(){
@@ -51,9 +53,13 @@ function draw(){
     select_cat();
   }
   if (state === "main"){
-    txtCounter();
     select_food();
+    drawQuestion();
+    txtCounter();
     cat_follow();
+  }
+  if (state === "question"){
+    txtQuestion();
   }
 }
 
@@ -136,7 +142,7 @@ function select_food(){
   image(trash, windowWidth/2.3, windowHeight/2.5);
 }
 
-// cat mouse
+// cat cursor + text on screen
 function cat_follow(){
   imageMode(CENTER);
   image(chosenCat, mouseX, mouseY);
@@ -169,7 +175,7 @@ function mousePressed(){
     state = "main";
   }
 
-  // selecting food (fish)
+  // selecting food
   else if (state === "main" && mouseInsideImg(windowWidth/6.3, windowHeight/2.5, windowWidth/8, windowHeight/5.4)){
     counter +=1;
     happyMeow.play();
@@ -182,9 +188,19 @@ function mousePressed(){
     counter -=1;
     angryMeow.play();
   }
+
+  // state "main" to "question"
+  else if (state === "main" && mouseInsideImg(windowWidth/15.2, windowHeight/8, windowWidth/23, windowHeight/10)){
+    state = "question";
+  }
+
+  // state "question" to "main"
+  else if (state === "question" && mouseInsideImg(windowWidth/15.2, windowHeight/8, windowWidth/9, windowHeight/12)){
+    state = "main";
+  }
 }
 
-// take a gamble huhu
+// take a gamble huhuhu
 function keyPressed(){
   if (state === "main" && keyCode === ENTER) {
     meow.play();
@@ -193,8 +209,35 @@ function keyPressed(){
 }
 
 function txtCounter(){
-  textSize(counterSize);
+  textSize(txt_size);
   fill("white");
   noStroke();
   text(counter, windowWidth/1.3, windowHeight/5.5);
+}
+
+function drawQuestion(){
+  noFill();
+  stroke("white");
+  strokeWeight(4);
+  rect(windowWidth/15.2, windowHeight/8, windowWidth/23, windowHeight/10);
+  image(question, windowWidth/15, windowHeight/8);
+}
+
+function txtQuestion(){
+  // back
+  noFill();
+  stroke("white");
+  strokeWeight(4);
+  rect(windowWidth/15.2, windowHeight/8, windowWidth/9, windowHeight/12);
+  image(back, windowWidth/15, windowHeight/8);
+
+  // txt info about "main"
+  let a = "Click on the food with green borders to keep the kitty happy.";
+  let b = "Fish = + 1, cat food + 2.";
+  let c = "But feeding it trash will result in the happiness meter decreasing by 1.";
+  textSize(txt_size);
+  strokeWeight(2);
+  text(a, windowWidth/5, windowHeight/6);
+  text(b, windowWidth/5, windowHeight/4);
+  text(c, windowWidth/5, windowHeight/3);
 }
