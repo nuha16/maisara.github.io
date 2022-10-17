@@ -5,7 +5,7 @@
 // extra for experts: I used sound
 
 // variables
-let Backgroundimg, catImg1, catImg2, greenCat, purpleCat, startImg1, startImg2, someTime, imgWidth, imgHeight, imgx, imgy, selectCatimg, chosenCat, meow, meow2, pressEnter, txt_size, angryMeow, happyMeow, feedCat, fish, catFood, trash, question, back, game_over, restart, gameOverSound;
+let Backgroundimg, catImg1, catImg2, greenCat, purpleCat, startImg1, startImg2, someTime, imgWidth, imgHeight, imgx, imgy, selectCatimg, chosenCat, meow, meow2, pressEnter, txt_size, angryMeow, happyMeow, feedCat, fish, catFood, trash, question, back, game_over, restart;
 let isCat1 = true;
 let state = "start screen";
 let counter = 0;
@@ -35,7 +35,6 @@ function preload(){
   meow2 = loadSound("Sounds/kitten meow.wav");
   angryMeow = loadSound("Sounds/angry meow.mp3");
   happyMeow = loadSound("Sounds/happy meow.wav");
-  gameOverSound = loadSound("Sounds/game over.wav");
 }
 
 function setup(){
@@ -67,8 +66,12 @@ function draw(){
     txtQuestion();
   }
 
-  if(state === "game over"){
+  if (state === "main" && counter < -10){
+    state = "game over";
+  }
+  if (state === "game over"){
     gameOver();
+    counter = 0;
   }
 }
 
@@ -260,7 +263,7 @@ function txtQuestion(){
 }
 
 function gameOver(){
-  // state === "game over";
+  state === "game over";
 
   // game over img
   image(game_over, windowWidth/3.4, windowHeight/5);
@@ -271,8 +274,7 @@ function gameOver(){
   strokeWeight(4);
   rect(windowWidth/2.6, windowHeight/2.5, windowWidth/6.6, windowHeight/12);
   image(restart, windowWidth/2.6, windowHeight/2.5);
-}
 
-if (state === "main" && counter < -10){
-  state = "game over";
+  // sound effect
+  angryMeow.play();
 }
