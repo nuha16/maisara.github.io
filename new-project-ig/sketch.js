@@ -26,9 +26,9 @@ function preload(){
   angryMeow = loadSound("Sounds/angry meow.mp3");
   happyMeow = loadSound("Sounds/happy meow.wav");
   feedCat = loadImage("Images/feed cat.png");
-  fish = loadImage("Image/fish.png");
-  catFood = loadImage("Image/cat food.png");
-  trash = loadImage("Images/fish.png");
+  fish = loadImage("Images/fish.png");
+  catFood = loadImage("Images/cat food.png");
+  trash = loadImage("Images/trash.png");
 }
 
 function setup(){
@@ -51,9 +51,9 @@ function draw(){
     select_cat();
   }
   if (state === "main"){
-    cat_follow();
     txtCounter();
     select_food();
+    cat_follow();
   }
 }
 
@@ -114,11 +114,26 @@ function select_cat(){
 }
 
 function select_food(){
+  // fish
   noFill();
-  stroke(143, 131, 249);
+  stroke("green");
   strokeWeight(4);
-  rect(windowWidth/7, windowHeight/2.5, windowWidth/7, windowHeight/4);
-  image(trash, windowWidth/6.2, windowHeight/2.5);
+  rect(windowWidth/6.3, windowHeight/2.5, windowWidth/8, windowHeight/5.4);
+  image(fish, windowWidth/6.2, windowHeight/2.5);
+
+  // cat food
+  noFill();
+  stroke("green");
+  strokeWeight(4);
+  rect(windowWidth/1.4, windowHeight/2.5, windowWidth/8.4, windowHeight/5);
+  image(catFood, windowWidth/1.4, windowHeight/2.5);
+  
+  // trash
+  noFill();
+  stroke("red");
+  strokeWeight(4);
+  rect(windowWidth/2.35, windowHeight/2.5, windowWidth/10, windowHeight/5);
+  image(trash, windowWidth/2.3, windowHeight/2.5);
 }
 
 // cat mouse
@@ -126,6 +141,7 @@ function cat_follow(){
   imageMode(CENTER);
   image(chosenCat, mouseX, mouseY);
   image(pressEnter, windowWidth/2, windowHeight/1.2);
+  image(feedCat, windowWidth/2, windowHeight/4);
   imageMode(CORNER);
 }
 
@@ -153,12 +169,22 @@ function mousePressed(){
     state = "main";
   }
 
-  // selecting food
-  else if (state === "main"){
-    select_food();
+  // selecting food (fish)
+  else if (state === "main" && mouseInsideImg(windowWidth/6.3, windowHeight/2.5, windowWidth/8, windowHeight/5.4)){
+    counter +=1;
+    happyMeow.play();
+  }
+  else if (state === "main" && mouseInsideImg(windowWidth/1.4, windowHeight/2.5, windowWidth/8.4, windowHeight/5)){
+    counter +=2;
+    happyMeow.play();
+  }
+  else if (state === "main" && mouseInsideImg(windowWidth/2.35, windowHeight/2.5, windowWidth/10, windowHeight/5)){
+    counter -=1;
+    angryMeow.play();
   }
 }
 
+// take a gamble huhu
 function keyPressed(){
   if (state === "main" && keyCode === ENTER) {
     meow.play();
