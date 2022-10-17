@@ -5,7 +5,7 @@
 // extra for experts: I used sound
 
 // variables
-let Backgroundimg, catImg1, catImg2, greenCat, purpleCat, startImg1, startImg2, someTime, imgWidth, imgHeight, imgx, imgy, selectCatimg, chosenCat, meow, meow2, pressEnter, txt_size, angryMeow, happyMeow, feedCat, fish, catFood, trash, question, back, game_over;
+let Backgroundimg, catImg1, catImg2, greenCat, purpleCat, startImg1, startImg2, someTime, imgWidth, imgHeight, imgx, imgy, selectCatimg, chosenCat, meow, meow2, pressEnter, txt_size, angryMeow, happyMeow, feedCat, fish, catFood, trash, question, back, game_over, restart, gameOverSound;
 let isCat1 = true;
 let state = "start screen";
 let counter = 0;
@@ -27,13 +27,15 @@ function preload(){
   trash = loadImage("Images/trash.png");
   question = loadImage("Images/question.png");
   back = loadImage("Images/back.png");
-  game_over = loadImage("Images/game over.jpg");
+  game_over = loadImage("Images/game over.png");
+  restart = loadImage("Images/restart.png");
 
   // sounds
   meow = loadSound("Sounds/meow.ogg");
   meow2 = loadSound("Sounds/kitten meow.wav");
   angryMeow = loadSound("Sounds/angry meow.mp3");
   happyMeow = loadSound("Sounds/happy meow.wav");
+  gameOverSound = loadSound("Sounds/game over.wav");
 }
 
 function setup(){
@@ -64,7 +66,8 @@ function draw(){
   if (state === "question"){
     txtQuestion();
   }
-  if (state === "main" && counter < -10){
+
+  if(state === "game over"){
     gameOver();
   }
 }
@@ -205,6 +208,10 @@ function mousePressed(){
   else if (state === "question" && mouseInsideImg(windowWidth/15.2, windowHeight/8, windowWidth/9, windowHeight/12)){
     state = "main";
   }
+  // state "game over" to "start screen"
+  if (state === "game over" && mouseInsideImg(windowWidth/2.6, windowHeight/2.5, windowWidth/6.6, windowHeight/12)){
+    state = "start screen";
+  }
 }
 
 // take a gamble huhuhu
@@ -253,8 +260,19 @@ function txtQuestion(){
 }
 
 function gameOver(){
-  state === "game over";
-  clear();
-  image(Backgroundimg, 0 , 0, windowWidth, windowHeight);
-  image(game_over, imgx, imgy, imgWidth, imgHeight);
+  // state === "game over";
+
+  // game over img
+  image(game_over, windowWidth/3.4, windowHeight/5);
+
+  // restart
+  noFill();
+  stroke("white");
+  strokeWeight(4);
+  rect(windowWidth/2.6, windowHeight/2.5, windowWidth/6.6, windowHeight/12);
+  image(restart, windowWidth/2.6, windowHeight/2.5);
+}
+
+if (state === "main" && counter < -10){
+  state = "game over";
 }
