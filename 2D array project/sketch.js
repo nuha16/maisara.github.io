@@ -1,15 +1,26 @@
-// Project Title
-// Your Name
-// Date
-//
+// 2nd project
+// Nuha Maisara
+// 28/10/22
+
 // Extra for Experts:
-// - describe what you did to take this project "above and beyond"
+// 
+
+let w = 1300;
+let h = 700;
+let winWidth = w;
+let winHeight = h;
 
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(winWidth, winHeight);
 }
 
 function draw() {
   background(220);
 }
+
+// if (winHeight < h || winWidth < w){
+//   background("red");
+// }
+
+function mousePressed(){}
