@@ -16,6 +16,8 @@ let grid, cellWidth, cellHeight, shovel, treasure, dirt, holeInGround;
 function preload(){
   shovel = loadImage("images/shovel.png");
   treasure = loadImage("images/treasure.png");
+  dirt = loadImage("images/dirt.png");
+  holeInGround = loadImage("images/hole.png");
 }
 
 function setup() {
