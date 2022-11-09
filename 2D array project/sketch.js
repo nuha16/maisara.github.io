@@ -23,7 +23,6 @@ function preload(){
 function setup() {
   createCanvas(winWidth, winHeight);
   // winTooSmallOrBig();
-  createCanvas(windowWidth, windowHeight);
   cellWidth = width/COLS;
   cellHeight = height/ROWS;
   grid = createRandom2dArray(COLS, ROWS);
