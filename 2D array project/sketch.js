@@ -8,6 +8,7 @@
 let ROWS = 15;
 let COLS = 15;
 let grid, cellWidth, cellHeight, shovel, treasure, dirt, holeInGround;
+let fallingCircleY = [];
 
 function preload(){
   shovel = loadImage("images/shovel.png");
@@ -91,24 +92,21 @@ function createRandom2dArray(COLS, ROWS) {
 
 // falling circle
 
+function settingWhereCircleFallsFrom() {
+  for (let i = 0; i < 25; i++) {
+    fallingCircleY[i] = random(height);
+  }
+}
 
-// let fallingCircleY = [];
+function fall() {
+  for (let i = 0; i < fallingCircleY.length; i++) {
+    let fallingCircleX = width * i / fallingCircleY.length;
+    circle(fallingCircleX, fallingCircleY[i], 25);
 
-// function settingWhereCircleFallsFrom() {
-//   for (let i = 0; i < 25; i++) {
-//     fallingCircleY[i] = random(height);
-//   }
-// }
-
-// function fall() {
-//   for (let i = 0; i < fallingCircleY.length; i++) {
-//     let fallingCircleX = width * i / fallingCircleY.length;
-//     circle(fallingCircleX, fallingCircleY[i], 25);
-
-//     fallingCircleY[i]++;
+    fallingCircleY[i]++;
     
-//     if (fallingCircleY[i] > height) {
-//       fallingCircleY[i] = 0;
-//     }
-//   }
-// }
+    if (fallingCircleY[i] > height) {
+      fallingCircleY[i] = 0;
+    }
+  }
+}
