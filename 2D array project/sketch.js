@@ -33,7 +33,7 @@ function draw() {
   displayGrid(grid);
 }
 
-function winTooSmallOrBig() {
+function winTooSmall() {
   if (winHeight < h || winWidth < w){
     background("red");
   }
