@@ -5,16 +5,21 @@
 // Extra for Experts:
 // 
 
+let state = "start";
 let ROWS = 15;
 let COLS = 15;
-let grid, cellWidth, cellHeight, shovel, treasure, dirt, holeInGround;
+let grid, cellWidth, cellHeight, shovel, treasure, treasures, dirt, holeInGround;
 let fallingCircleY = [];
+
+
+// 503px width, 181px height (three treasure chests from the beginning)
 
 function preload(){
   shovel = loadImage("images/shovel.png");
   treasure = loadImage("images/treasure.png");
   dirt = loadImage("images/dirt.png");
   holeInGround = loadImage("images/hole.png");
+  treasures = loadImage("images/treasures.png");
 }
 
 function setup() {
@@ -29,8 +34,10 @@ function setup() {
 }
 
 function draw() {
+  startScreen();
+
   // draw grid
-  displayGrid(grid);
+  // displayGrid(grid);
 }
 
 function mousePressed() {
@@ -43,6 +50,13 @@ function mousePressed() {
   }
   else if (grid[yPos][xPos] === 1) {
     grid[yPos][xPos] = 0;
+  }
+}
+
+function startScreen() {
+  if (state === "start"){
+    background("#37640a");
+    image(treasures, width/2, height/3);
   }
 }
 
@@ -92,12 +106,14 @@ function createRandom2dArray(COLS, ROWS) {
 
 // falling circle
 
+// goes in setup function
 function settingWhereCircleFallsFrom() {
   for (let i = 0; i < 25; i++) {
     fallingCircleY[i] = random(height);
   }
 }
 
+// goes in draw function
 function fall() {
   for (let i = 0; i < fallingCircleY.length; i++) {
     let fallingCircleX = width * i / fallingCircleY.length;
