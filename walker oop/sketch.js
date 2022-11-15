@@ -6,7 +6,7 @@ class Walker {
     this.y = y;
     this.colour = "red";
     this.speed = 5;
-    this.radius = 5;
+    this.radius = 3;
   }
 
   display(){
