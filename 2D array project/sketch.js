@@ -88,3 +88,27 @@ function createRandom2dArray(COLS, ROWS) {
   }
   return emptyArray;
 }
+
+// falling circle
+
+
+// let fallingCircleY = [];
+
+// function settingWhereCircleFallsFrom() {
+//   for (let i = 0; i < 25; i++) {
+//     fallingCircleY[i] = random(height);
+//   }
+// }
+
+// function fall() {
+//   for (let i = 0; i < fallingCircleY.length; i++) {
+//     let fallingCircleX = width * i / fallingCircleY.length;
+//     circle(fallingCircleX, fallingCircleY[i], 25);
+
+//     fallingCircleY[i]++;
+    
+//     if (fallingCircleY[i] > height) {
+//       fallingCircleY[i] = 0;
+//     }
+//   }
+// }
