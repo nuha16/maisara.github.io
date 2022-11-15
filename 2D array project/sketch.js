@@ -33,11 +33,11 @@ function draw() {
   displayGrid(grid);
 }
 
-// function winTooSmallOrBig() {
-//   if (winHeight < h || winWidth < w){
-//     background("red");
-//   }
-// }
+function winTooSmallOrBig() {
+  if (winHeight < h || winWidth < w){
+    background("red");
+  }
+}
 
 function mousePressed() {
   let xPos = Math.floor(mouseX/cellWidth);
