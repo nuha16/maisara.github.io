@@ -28,6 +28,7 @@ function setup() {
 }
 
 function draw() {
+  // draw grid
   displayGrid(grid);
 }
 
@@ -35,7 +36,7 @@ function mousePressed() {
   let xPos = Math.floor(mouseX/cellWidth);
   let yPos = Math.floor(mouseY/cellHeight);
 
-  // digging 
+  // digging ish
   if (grid[yPos][xPos] === 0) {
     grid[yPos][xPos] = 1;
   }
@@ -47,9 +48,12 @@ function mousePressed() {
 function displayGrid(grid) {
   for (let y=0; y<ROWS; y++) {
     for (let x=0; x<COLS; x++) {
+      // light grass
       if (grid[y][x] === 0) {
         fill("#79d220");
       }
+
+      // dark grass
       else if (grid[y][x] === 1) {
         fill("#37640a");
       }
