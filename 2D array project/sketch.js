@@ -5,13 +5,10 @@
 // Extra for Experts:
 // 
 
-let w = 1300;
-let h = 700;
-let winWidth = w;
-let winHeight = h;
-let ROWS = 40;
-let COLS = 40;
+let ROWS = 15;
+let COLS = 15;
 let grid, cellWidth, cellHeight, shovel, treasure, dirt, holeInGround;
+let fallingCircleY = [];
 
 function preload(){
   shovel = loadImage("images/shovel.png");
@@ -21,28 +18,26 @@ function preload(){
 }
 
 function setup() {
-  createCanvas(winWidth, winHeight);
-  // winTooSmallOrBig();
+  createCanvas(windowWidth, windowHeight);
+
+  // how many columns and rows there are
   cellWidth = width/COLS;
   cellHeight = height/ROWS;
+
+  // randomizing grid
   grid = createRandom2dArray(COLS, ROWS);
 }
 
 function draw() {
-  background(220);
+  // draw grid
   displayGrid(grid);
 }
-
-// function winTooSmallOrBig() {
-//   if (winHeight < h || winWidth < w){
-//     background("red");
-//   }
-// }
 
 function mousePressed() {
   let xPos = Math.floor(mouseX/cellWidth);
   let yPos = Math.floor(mouseY/cellHeight);
 
+  // digging ish
   if (grid[yPos][xPos] === 0) {
     grid[yPos][xPos] = 1;
   }
@@ -54,11 +49,14 @@ function mousePressed() {
 function displayGrid(grid) {
   for (let y=0; y<ROWS; y++) {
     for (let x=0; x<COLS; x++) {
+      // light grass
       if (grid[y][x] === 0) {
-        fill("white");
+        fill("#79d220");
       }
+
+      // dark grass
       else if (grid[y][x] === 1) {
-        fill("black");
+        fill("#37640a");
       }
       rect(x*cellWidth, y*cellHeight, cellWidth, cellHeight);
     }
@@ -90,4 +88,25 @@ function createRandom2dArray(COLS, ROWS) {
     }
   }
   return emptyArray;
+}
+
+// falling circle
+
+function settingWhereCircleFallsFrom() {
+  for (let i = 0; i < 25; i++) {
+    fallingCircleY[i] = random(height);
+  }
+}
+
+function fall() {
+  for (let i = 0; i < fallingCircleY.length; i++) {
+    let fallingCircleX = width * i / fallingCircleY.length;
+    circle(fallingCircleX, fallingCircleY[i], 25);
+
+    fallingCircleY[i]++;
+    
+    if (fallingCircleY[i] > height) {
+      fallingCircleY[i] = 0;
+    }
+  }
 }
