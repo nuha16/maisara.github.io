@@ -5,12 +5,8 @@
 // Extra for Experts:
 // 
 
-let w = 1300;
-let h = 700;
-let winWidth = w;
-let winHeight = h;
-let ROWS = 40;
-let COLS = 40;
+let ROWS = 15;
+let COLS = 15;
 let grid, cellWidth, cellHeight, shovel, treasure, dirt, holeInGround;
 
 function preload(){
@@ -21,28 +17,25 @@ function preload(){
 }
 
 function setup() {
-  createCanvas(winWidth, winHeight);
-  // winTooSmallOrBig();
+  createCanvas(windowWidth, windowHeight);
+
+  // how many columns and rows there are
   cellWidth = width/COLS;
   cellHeight = height/ROWS;
+
+  // randomizing grid
   grid = createRandom2dArray(COLS, ROWS);
 }
 
 function draw() {
-  background(220);
   displayGrid(grid);
-}
-
-function winTooSmall() {
-  if (winHeight < h || winWidth < w){
-    background("red");
-  }
 }
 
 function mousePressed() {
   let xPos = Math.floor(mouseX/cellWidth);
   let yPos = Math.floor(mouseY/cellHeight);
 
+  // digging 
   if (grid[yPos][xPos] === 0) {
     grid[yPos][xPos] = 1;
   }
@@ -55,10 +48,10 @@ function displayGrid(grid) {
   for (let y=0; y<ROWS; y++) {
     for (let x=0; x<COLS; x++) {
       if (grid[y][x] === 0) {
-        fill("white");
+        fill("#79d220");
       }
       else if (grid[y][x] === 1) {
-        fill("black");
+        fill("#37640a");
       }
       rect(x*cellWidth, y*cellHeight, cellWidth, cellHeight);
     }
