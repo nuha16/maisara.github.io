@@ -1,4 +1,4 @@
-// Walker OOP demo
+// Walker OOP array
 
 class Walker {
   constructor(x, y) {
@@ -37,25 +37,27 @@ class Walker {
   }
 }
 
-let michael;
-let katharine;
-let object;
+let walkerArray = [];
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  michael = new Walker(width/2, height/2);
-  katharine = new Walker(200, 300);
-  katharine.colour = "blue";
-  object = new Walker(width - 150, height - 150);
-  object.colour = "green";
+  spawnWalker();
 }
 
 function draw() {
-  michael.move();
-  katharine.move();
-  object.move();
+  for (let i=0; i < walkerArray.length; i++){
+    walkerArray[i].move();
+    walkerArray[i].display();
+  }
+}
 
-  michael.display();
-  katharine.display();
-  object.display();
+function keyPressed(){
+  spawnWalker();
+}
+
+function spawnWalker(){
+  let michael = new Walker(random(width), random(height));
+  let someColour = color(random(255), random(255), random(255));
+  michael.colour = someColour;
+  walkerArray.push(michael);
 }
