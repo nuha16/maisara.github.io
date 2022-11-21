@@ -31,6 +31,7 @@ class Button {
 }
 let backgroundColour = 220;
 let buttonOne = new Button(200, 300, 200, 100);
+let buttonTwo = new Button(200, 300, 200, 100);
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
