@@ -17,7 +17,7 @@ function preload(){
   treasure = loadImage("images/treasure.png");
   dirt = loadImage("images/dirt.png");
   holeInGround = loadImage("images/hole.png");
-  treasures = loadImage("aesthetic box startscreen.jpg");
+  treasures = loadImage("images/treasure box.jpg");
 }
 
 function setup() {
@@ -36,12 +36,12 @@ function setup() {
 }
 
 function draw() {
-  // startScreen();
+  startScreen();
 
   // draw grid
-  displayGridAndDig(grid);
+  // displayGridAndDig(grid);
 
-  shovelCursor();
+  // shovelCursor();
 }
 
 function shovelCursor() {
@@ -66,7 +66,16 @@ function mousePressed() {
 function startScreen() {
   if (state === "start"){
     background("#37640a");
-    image(treasures, width/2, height/2);
+
+    // treasure box image
+    imageMode(CENTER);
+    image(treasures, width/2, height/2, width/1.6, height/1.2);
+    imageMode(CORNER);
+
+    // press enter text
+    textSize(50);
+    // textFont("Roboto");
+    text("Press Enter", width/2, height/5);
   }
 }
 
