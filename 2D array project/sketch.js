@@ -3,14 +3,12 @@
 // 28/10/22
 
 // Extra for Experts:
-// 
 
 let state = "start";
-let ROWS = 15;
-let COLS = 15;
-let grid, cellWidth, cellHeight, shovel, treasure, treasures, dirt, holeInGround;
+let ROWS = 8;
+let COLS = 8;
+let grid, cellWidth, cellHeight, shovel, treasure, treasures, dirt, holeInGround, randomXPoint, randomYPoint;
 let fallingCircleY = [];
-
 
 // 503px width, 181px height (three treasure chests from the beginning)
 
@@ -19,25 +17,37 @@ function preload(){
   treasure = loadImage("images/treasure.png");
   dirt = loadImage("images/dirt.png");
   holeInGround = loadImage("images/hole.png");
-  treasures = loadImage("images/treasures.png");
+  treasures = loadImage("aesthetic box startscreen.jpg");
 }
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-
+  
   // how many columns and rows there are
   cellWidth = width/COLS;
   cellHeight = height/ROWS;
+
+  // randomizing chest location
+  randomXPoint = int(random(0, COLS)); // COLS because I didn't want to make a new variable because they use the same number
+  randomYPoint = int(random(0, COLS));
 
   // randomizing grid
   grid = createRandom2dArray(COLS, ROWS);
 }
 
 function draw() {
-  startScreen();
+  // startScreen();
 
   // draw grid
-  // displayGrid(grid);
+  displayGridAndDig(grid);
+
+  shovelCursor();
+}
+
+function shovelCursor() {
+  imageMode(CENTER);
+  image(shovel, mouseX, mouseY, width/18, height/8);
+  imageMode(CORNER);
 }
 
 function mousePressed() {
@@ -49,30 +59,40 @@ function mousePressed() {
     grid[yPos][xPos] = 1;
   }
   else if (grid[yPos][xPos] === 1) {
-    grid[yPos][xPos] = 0;
+    grid[yPos][xPos] = 2;
   }
 }
 
 function startScreen() {
   if (state === "start"){
     background("#37640a");
-    image(treasures, width/2, height/3);
+    image(treasures, width/2, height/2);
   }
 }
 
-function displayGrid(grid) {
+function displayGridAndDig(grid) {
+  // treasure
+  image(treasure, randomXPoint*cellWidth + cellWidth/4, randomYPoint*cellHeight + cellHeight/10, cellWidth/2, cellHeight/1.2);
+
   for (let y=0; y<ROWS; y++) {
     for (let x=0; x<COLS; x++) {
-      // light grass
-      if (grid[y][x] === 0) {
-        fill("#79d220");
-      }
+      // drawing columns and rows
+      rect(x*cellWidth, y*cellHeight, cellWidth, cellHeight);
 
       // dark grass
-      else if (grid[y][x] === 1) {
+      if (grid[y][x] === 0) {
         fill("#37640a");
       }
-      rect(x*cellWidth, y*cellHeight, cellWidth, cellHeight);
+
+      // dirt
+      if (grid[y][x] === 1) {
+        image(dirt, x*cellWidth + cellWidth/8, y*cellHeight + cellHeight/6, cellWidth/1.4, cellHeight/1.4);
+      }
+
+      // hole
+      if (grid[y][x] === 2) {
+        image(holeInGround, x*cellWidth + cellWidth/8, y*cellHeight + cellHeight/6, cellWidth/1.4, cellHeight/1.4);
+      }
     }
   }
 }
