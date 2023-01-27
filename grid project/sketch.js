@@ -35,7 +35,7 @@ function preload() {
   rock = loadImage("images/rock1.png");
 
   // fonts
-  littleLego = loadImage("fonts/littlelego.ttf");
+  littleLego = loadFont("fonts/littlelego.ttf");
 }
 
 function setup() {
@@ -47,7 +47,8 @@ function draw() {
 }
 
 function startScreen() {
-  image(darkSky, width/2, height/2);
+  imageMode(CENTER);
+  image(darkSky, width/2, height/2, width*0.9999, height*1.01);
 }
 
 function mousePressed() {
