@@ -1,15 +1,12 @@
 // Nuha Maisara
 // Space Shooter Game
 
-// reference for collision between obstacles and bullets https://www.youtube.com/watch?v=IUbEGcvZYJQ&ab_channel=CodingwithMrWard
-
-let darkSky, spaceship, rock, littleLego, startBttn, startBttn2;
+let darkSky, spaceship, rock, littleLego, startBttn, startBttn2, click, shoot, gameOverSound;
 
 let state = "start";
 
 let bullets = [];
 let obstacles = [];
-let score = 0;
 
 function preload() {
   // images
@@ -21,6 +18,11 @@ function preload() {
   
   // fonts
   littleLego = loadFont("fonts/littlelego.ttf");
+
+  // sounds
+  click = loadSound("sound/alienshoot1.wav");
+  shoot = loadSound("sound/Normal shot.wav");
+  gameOverSound = loadSound("sound/GameOver.wav");
 }
 
 function setup() {
@@ -69,9 +71,9 @@ function draw() {
   if (state === "game screen") {
     gameScreen();
   }
-  // if (state === "game over") {
-  //   gameOver();
-  // }
+  if (state === "game over") {
+    gameOver();
+  }
 }
 
 function startScreen() {
@@ -81,12 +83,14 @@ function startScreen() {
   image(darkSky, width/2, height/2, width*0.9999, height*1.01);
 
   // start button
+  fill("black");
   startButton.display();
   textFont(littleLego);
   textSize(70);
   text("START", width/2.45, height/1.45);
-
+  
   // title
+  fill("white");
   textFont(littleLego);
   textSize(100);
   text("SPACE SHOOTER", width/6, height/2.5);
@@ -95,8 +99,6 @@ function startScreen() {
 function gameScreen() {
   imageMode(CENTER);
   rectMode(CENTER);
-
-  counter();
 
   // background
   image(darkSky, width/2, height/2, width*0.9999, height*1.01);
@@ -113,9 +115,9 @@ function gameScreen() {
   for (let rockObstacle of obstacles) {
     rockObstacle.y += 1;
     image(rock, rockObstacle.x, rockObstacle.y, width/18, height/11);
-    // if (rockObstacle.y > height){
-    //   state = "Game Over";
-    // }
+    if (rockObstacle.y > height){
+      state = "game over";
+    }
   }
 
   // making bullets and obstacles disappear
@@ -142,23 +144,25 @@ function obstacle() {
   }
 }
 
-// function gameOver() {
-//   imageMode(CENTER);
+function gameOver() {
+  clear();
+  imageMode(CENTER);
 
-//   // background
-//   image(darkSky, width/2, height/2, width*0.9999, height*1.01);
+  // background
+  image(darkSky, width/2, height/2, width*0.9999, height*1.01);
 
-//   // game over
-//   textFont(littleLego);
-//   textSize(100);
-//   text("GAME OVER", width/6, height/2.5);
-//   noLoop();
-// }
+  // game over
+  fill("white");
+  textFont(littleLego);
+  textSize(100);
+  text("GAME OVER", width/4, height/2.5);
+}
 
 function mousePressed() {
   // changing states
   if (startButton.isInside(mouseX, mouseY)) {
     state = "game screen";
+    
   }
 
   // bullet
