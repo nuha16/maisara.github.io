@@ -1,7 +1,7 @@
 // Nuha Maisara
 // Space Shooter Game
 
-let darkSky, spaceship, rock, littleLego, startBttn, startBttn2, click, shoot, gameOverSound;
+let darkSky, spaceship, rock, littleLego, startBttn, startBttn2;
 
 let state = "start";
 
@@ -18,11 +18,6 @@ function preload() {
   
   // fonts
   littleLego = loadFont("fonts/littlelego.ttf");
-
-  // sounds
-  click = loadSound("sound/alienshoot1.wav");
-  shoot = loadSound("sound/Normal shot.wav");
-  gameOverSound = loadSound("sound/GameOver.wav");
 }
 
 function setup() {
@@ -68,12 +63,14 @@ function draw() {
   if (state === "start") {
     startScreen();
   }
+
   if (state === "game screen") {
     gameScreen();
   }
   if (state === "game over") {
     gameOver();
   }
+
 }
 
 function startScreen() {
@@ -162,7 +159,6 @@ function mousePressed() {
   // changing states
   if (startButton.isInside(mouseX, mouseY)) {
     state = "game screen";
-    
   }
 
   // bullet
