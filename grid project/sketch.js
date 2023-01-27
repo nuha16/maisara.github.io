@@ -69,6 +69,9 @@ function draw() {
   if (state === "game screen") {
     gameScreen();
   }
+  // if (state === "game over") {
+  //   gameOver();
+  // }
 }
 
 function startScreen() {
@@ -93,6 +96,8 @@ function gameScreen() {
   imageMode(CENTER);
   rectMode(CENTER);
 
+  counter();
+
   // background
   image(darkSky, width/2, height/2, width*0.9999, height*1.01);
   
@@ -104,10 +109,13 @@ function gameScreen() {
     rect(bullet.x, bullet.y, width/55, height/30);
   }
   
-  // obstales
+  // obstacles
   for (let rockObstacle of obstacles) {
     rockObstacle.y += 1;
     image(rock, rockObstacle.x, rockObstacle.y, width/18, height/11);
+    // if (rockObstacle.y > height){
+    //   state = "Game Over";
+    // }
   }
 
   // making bullets and obstacles disappear
@@ -133,6 +141,19 @@ function obstacle() {
     obstacles.push(rockObstacle);
   }
 }
+
+// function gameOver() {
+//   imageMode(CENTER);
+
+//   // background
+//   image(darkSky, width/2, height/2, width*0.9999, height*1.01);
+
+//   // game over
+//   textFont(littleLego);
+//   textSize(100);
+//   text("GAME OVER", width/6, height/2.5);
+//   noLoop();
+// }
 
 function mousePressed() {
   // changing states
